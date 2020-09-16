@@ -1,2 +1,413 @@
 # Elk-Project-2020
-UCI Project - Networking, Cloud Architecture, Ansible, Docker, DVWA, and ELK stack.
+UCI Project - Cloud Scurity.
+
+
+CREATING A RESOUCE GROUP (RSG) 
+
+We will begin creating a cloud infrastructure environment.
+
+In Azure, RSG allow engineers to sort related resources into different groups, each of which can be easily located by name.
+
+A RSG is a logical grouping of all resources used for a particular setup or project. The RSG will contain the network, firewalls, virtual computers, and other resources that are needed for setup.
+
+The first step to creating an environment in Azure is to create a RSG. Once we have a RSG, we can start adding items to it, the first of which will be a virtual network.
+
+Open your Azure portal and search for "resource group" in the search box.
+
+Select Resource groups in the search results and note the + Add button at the top.
+
+Create a name for your resource group and choose a region.
+*Note: Choose a region that you can easily remember. Every resource you create after this must be created in the exact same region.
+
+Not all regions will have available well-priced VMs, check available options for preferred price.
+
+Every resource that you create will have the + Add button at the top. 
+
+Click on Review + create.
+
+Azure will alert you if there are any errors. Click on Create to finalize your settings and create the group.
+
+Once the group is created, click on Go to resource group in the top-right corner of the screen to view your new resource group.
+
+
+CREATING A VIRTUAL NETWORK (vNet)
+
+Now that we have a resource group, we can add a virtual network.
+
+Before you can deploy servers and services, there must be a network where these items can be accessed.
+
+This network should have the capacity to hold any resource that the Red Team needs, now and in the future.
+
+Return to the home screen and search for "net." Choose the search result for Virtual networks.
+
+Creating a vNET creates all of these resources; vNICs, IP addresses, and Subnets at the same time.
+
+Return to the home screen and search for "net." Choose the search result for Virtual networks.
+
+Click on the + Add button on the top-left of the page or the Create virtual network button on the bottom of the page
+
+Fill in the network settings:
+
+Subscription: Your free subscription should be the only option here.
+
+Resource group: This should be the resource group you created in step two.
+
+Name: A descriptive name so it will not get confused with other cloud networks in the same account.
+
+Region: Make sure to choose the same region you chose for your resource group.
+*Carefully configuring the region of your resources is important for ensuring low latency and high availability. Resources should be located as close as possible to those who will be consuming them.
+
+When creating a network in Azure, we will define a large network as well as a subnet inside that network. For example:
+
+10.0.0.0/16 for the large network.
+
+10.10.1.0/24 for the first subnet.
+
+These default values will be automatically populated and you will not need to change them.
+Use the defaults on this tab.
+
+You'll only need to define the boundaries of the network and you can use the default values. Azure does the rest. You will not need to configure a router or DHCP, as these are configured automatically.
+
+Security: Leave the default settings.
+
+Tags: No tags are needed.
+
+Click Create
+
+Once you have created your resource group and VNet, return to the home screen and choose the resource group option.
+
+This provides a list of all resource groups in your account.
+Choose the group that you created and you should see your VNet listed as a resource.
+
+You now have a resource group and VNet that you can use to create the rest of the cloud infrastructure.
+
+Final vNet Settings should be similar to:
+
+Basics:
+Subscription - Example subscriotion (your subscription here)
+Resource Group - ExampleGroup (your RSG here)
+Name - ExampleNet (vNet here)
+Region -  Example West 3 (region here)
+IP addreses:
+Address space -  Example 10.0.0.0/16 (ip range here)
+Subnet - Example 10.0.0.0/24 (subnet range here)
+Tags:
+None (unless you need to add)
+Security:
+BastionHost - Disabled (unless specifications are needed)
+DDoS protection plan - Basic (")
+Firewall - Disabled (")
+
+
+Network Security Groups (NSG)
+
+The next step is to have a virtual machine running behind a firewall on their virtual network in the cloud.
+
+Now that we have a vNET set up, we want to protect it with a firewall.
+
+As a review: Firewalls block or allow network traffic depending on what rules are set.
+
+We can set rules on single or multiple ports, coming from and going to a single IP or multiple IPs.
+
+On the Azure platform, our basic firewall is called a network security group (NSG). We will use a NSG to block and allow traffic to our virtual network and between machines on that network.
+
+As mentioned earlier, many resources can be created independently of any particular virtual network and then attached to a VNet after creation.
+
+NSG are a good example of this concept. During this next steps, we will create an NSG that blocks all traffic to and from the network. We will then attach it to the VNet to secure it.
+
+This model, while seemingly complex, has the advantage of allowing security engineers to create NSGs for different traffic profiles, which they can then replicate and apply to any VNet.
+
+For example, one might create an NSG called Desktop Connections, which clears RDP and VNC traffic to and from the VNet. Engineers can then use this NSG as a template, clone it, and apply it to any new or existing VNet that requires this type of access.
+
+Network Security Group Demonstration.
+
+To create a network security group:
+
+On your Azure portal home screen, search "net" and choose Network security groups.
+
+Create a new security group.
+
+Add this security group to your resource group.
+
+Give the group a recognizable name that is easy to remember.
+
+Make sure the security group is in the same region that you chose during the previous activity.
+
+To create an inbound rule to block all traffic:
+
+Once the security group is created, click on the group to configure it.
+
+Choose Inbound security rules on the left.
+
+Click on the + Add button to add a rule.
+
+Configure the inbound rule as follows:
+
+Source: Choose Any source to block all traffic.
+
+Source port ranges: Source ports are always random, even with common services like HTTP. Therefore, keep the wildcard (*) to match all source ports.
+
+Destination: Select Any to block any and all traffic associated with this security group.
+
+Destination port ranges: Usually, you would specify a specific port or a range of ports for the destination. In this case, you can use the wildcard (*) to block all destination ports. You can also block all ports using a range like 0-65535.
+
+Protocol: Block Any protocol that is used.
+
+Action: Use the Block action to stop all of the traffic that matches this rule.
+
+Priority: This rule will always be the last rule, so it should have the highest possible number for the priority. Other rules will always come before this rule. The highest number Azure allows is 4,096.
+
+Name: Give your rule a name like "Default-Deny."
+
+Description: Write a quick description similar to "Deny all inbound traffic."
+
+Save the rule.
+
+You should now have a VNet protected by a network security group that blocks all traffic.
+
+Save your new security group rule.
+
+Quick Review.
+
+Let's look at the default rules and their purpose:
+
+  - The first rule allows all traffic to flow inside the vNet with destination and source both set to 'Internal Network'.
+  This means that all machines deployed using this Security Group will be able to communicate with each other.
+
+  - The second rule allows all traffic coming from a load balancer.
+  This means that if there were a load balancer assigned to this security group, it could send traffic to all the resources on the internal network.
+
+  - The final rule blocks all other traffic.
+  This means that all traffic from the internet is automatically blocked to any resource you protect with this Security Group.
+
+When a machine is deployed to your vNet using this security group, you will have to create a rule that allows access to that resource.
+
+Explain that, as an example, you will create a rule that allows RDP on port 3389.
+
+Create a rule using the following settings:
+
+Source: This is the source computer. It can be a single IP, a range of addresses, an application security group, or a service tag.
+
+   - An application security group is a kind of web application firewall that we won't be using.
+   - A service tag will filter for a specific location or source of traffic.
+   - For this rule,  we will set the source to your external IP address. - Visit http://ip4.me/ to obtain your external IPv4 address.
+    Choose 'Ip Addresses' from the dropdown and paste in your external IPv4 addressdre
+
+*Note Soucre IP address needs a value, it can not be empty!
+
+Source Port Ranges: Source ports are generated randomly, so it's best to leave the wild card (*) here to signify all source ports.
+
+Destination: We can choose between Any, IP address(s), VirtualNetwork, or an application security group. We'll choose VirtualNetwork.
+*Note that if you wanted to send traffic to a specific machine, you would enter its internal IP address here.
+
+Destination Port Ranges: RDP uses port 3389, so we will specify this port.
+
+Protocol: We can choose TCP, UDP, ICMP or Any to block RDP. In the image above, Any was chose.
+  RDP listens using both UDP and TCP, so 'Any' is the best option here.
+
+Action: Firewall rules are either denying traffic or allowing traffic. Here, we are going to choose Allow.
+
+Priority: Firewall rules are implemented in sequence. A priority number allows rules to be read and sorted based on their priority number, from lowest to highest. We can see that the default rules start with a priority of 100, so anything we set under 100 will be read first. In the example above, we've used 500.
+
+Name/Description: You can name a rule whatever you like, but it is a best practice to name it what it is and describe what it does. Here, we will name it "Allow-RDP" and add the description: "Allow RDP from external IP over port 3389."
+
+
+CREATING JUMP-BOX VM
+
+Next we will create a new VM and add it to our network.
+
+Navigate to your Azure portal, search for "Virtual" and select Virtual machines.
+
+Click + Add to create a new VM.
+*Important: Give your VMs descriptive names. It will help stay organized.
+
+Resource Group: Select RSG you created.
+
+Name this VM "Jump-Box."
+
+Region: Use the same region you used for your other resources.
+*Note that availability of VM's in Azure could cause you to change the region where your VM's are created.
+The goal is to create 3 machines in the same resource group attached to the same security group. If you cannot add 3 machines to the resource group and security group that you have, a new resource group and security group may need to be created in another region.
+
+Availability options: We will use this setting for other machines. For our jump box, we will leave this on the default setting.
+
+Under 'Availability Options' we won't need redundancy for the Jump-Box. This is because the jump box does not need to scale to handle a large number of connections: Only one administrator will use it at a time.
+
+The web servers, by contrast, must be designed to handle a large number of requests. This requires configuring them with an Availability Set, and assigning each web server to that availability set. and select it for the web machines.
+
+An Availability Set is a fault-tolerant group of VMs. An Availability Set consists of at least two VMs. Each must be located in the same region, but each of the two VMs is hosted in a different data center. Different data centers are called Availability Zones.
+
+This ensures that, if one of the VMs in the availability set goes down, the other is (nearly) guaranteed to remain up: Even if an entire data center goes down, the redundant machine in the other Availability Zone will remain running.
+
+In summary, an Availability Set is a group of VMs, where each VM is in a different Availability Zone. If one of the Availability Zones goes down, the VM in the other picks up the workload.
+*Note: Azure limits free tier users to only 4 vCPUs per Region. Notice that the default machine will normally have 2 vCPUs and 8 GiB of memory. For this jump box, the machine size should be changed to a smaller machine to conserve resources.
+
+Image: Choose the Ubuntu Server 18.04 option.
+
+The Jump-Box machine only needs 1 vCpu and 1 GiB of memory.
+*NOTE: IF there is no machine selected by default, there may not be any machines available in that region. Azure VM availability updates dynamically so changing your region may give you the machine that you need.
+Click on 'Change size'
+
+Choose a machine that has 1vCPU and one GiB of Memory (B1s).
+*NOTE: If all of the machines are greyed out and you cannot select one, Azure doesn't have any available machines in the selected region. The region must be changed on the previous screen.
+
+SSH setup:
+
+Accessing a server with SSH using a password is inherently weak: many programs can brute force an SSH password. Instead, we want to practice setting up secure systems from the beginning, so we will use an SSH key pair to access our new machine.
+
+Azure has a section on the Basics page where we can insert a public key and create an administrator name for our SSH access.
+
+First, we have to create a key.
+
+To do this on the command line use the 'ssh-keygen' command.
+*IMPORTANT: Windows users should be using GitBash to use these commands and create ssh connections.
+
+Open a terminal and run ssh-keygen.
+
+You will be prompted to save the SSH key into the default directory ~/.ssh/id_rsa. !!DO NOT CHANGE THIS LOCATION!! Press the Enter key.
+
+You will be prompted to enter a password for our new SSH key.
+
+!!DO NOT ENTER A PASSWORD!! Press the enter key twice to enter a blank password
+
+You should not change the name or location of this key and should not enter a password. You only need to use the default values and hit enter to accept them. If you set a password or change the location, it can cause issues later on in the week when you setup automation.
+
+Your output should be similar to the below:
+$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/cyber/.ssh/id_rsa): <hit enter>
+Enter passphrase (empty for no passphrase): <hit enter>
+Enter same passphrase again: <hit enter>
+Your identification has been saved in id_rsa.
+Your public key has been saved in id_rsa.pub.
+The key fingerprint is:
+SHA256:r3aBFU50/5iQbbzhqXY+fOIfivRFdMFt37AvLJifC/0 cyber@2Us-MacBook-Pro.local
+The randomart image is:
++---[RSA 2048]----+
+|         .. . ...|
+|          o. =..+|
+|         o .o *=+|
+|          o  +oB+|
+|        So o .*o.|
+|        ..+...+ .|
+|          o+++.+ |
+|        ..oo=+* o|
+|       ... ..=E=.|
++----[SHA256]-----+
+
+All SSH keys are stored in the user home folder under a hidden .ssh directory. Inside this directory we can see our private key named id_rsa, which should never be shared. You can also see a public key named id_rsa.pub, which you can place on servers that you want to access using this key.
+
+Run cat ~/.ssh/id_rsa.pub to show our id_rsa.pub key:
+$ cat ~/.ssh/id_rsa.pub
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGG6dBJ6ibhgM09U+kn/5NE7cGc4CNHWXein0f+MciKElDalf76nVgFvJQEIImMhAGrtRRJDAd6itlPyBpurSyNOByU6LX7Gl6DfGQKzQns6+n9BheiVLLY9dtodp8oAXdVEGles5EslflPrTrjijVZa9lxGe34DtrjijExWM6hBb0KvwlkU4worPblINx+ghDv+3pdrkUXMsQAht/fLdtP/EBwgSXKYCu/
+
+Copy the SSH key string and paste it into the Administrator Account section on the Basics page for the VM in Azure.
+
+For SSH public key source select Use existing public key from the drop down.
+
+The username can be any name, but it must be something you will not forget. The SSH public key must be copied from the machine.
+
+This is all you need to do to create an administrator account on the machine that will have SSH access.
+
+Public inbound ports: Ignore this setting. It will be overwritten when you choose your security group.
+
+Select inbound ports: Ignore this setting. It will be overwritten when you choose your security group.
+
+Move to the Networking tab and set the following settings:
+
+Virtual network: Choose the VNet you created.
+
+Subnet: Choose the subnet that you created earlier.
+
+Public IP: This can be kept as default.
+
+NIC network security group: Choose the Advanced option so we can specify our custom security group.
+
+Configure network security group: Choose your network security group.
+
+Accelerated networking: Keep as the default setting (Off).
+
+In the Networking settings, take note of the VM URL. You may use it later.
+
+Load balancing: Keep as the default setting (No).
+
+Click on Review + create.
+
+Finalize all your settings and create the VM by clicking on the Create button.
+
+
+CREATE A RED-TEAM-1 and RED-TEAM-2 VM
+
+Create 2 more new VMs. Keep the following in mind when configuring these VM's:
+
+Each VM should be named "-1" and "-2"
+
+These VM's need to be in the same RSG you are using for all other resources.
+
+The VM's should be located in the same region as your resource group and security group.
+*Note that availability of VM's in Azure could cause you to change the region where your VM's are created. The goal is to create 3 machines in the same resource group attached to the same security group. If you cannot add 3 machines to the resource group and security group that you have, a new resource group and security group may need to be created in another region.
+
+The administrative username should make sense for this scenario. You should use the same admin name for all 3 machines. Make sure to take a note of this name as you will need it to login later.
+
+You will need to create a new SSH key for remote connections.
+*Note: Windows users should use GitBash to create ssh keys and ssh connections.
+
+Choose the VM option that has:
+Whose offering is Standard - B1ms
+1 CPU
+2 RAM
+*Note: These web machines should have 2 GB of RAM and the Jump-Box only needs 1 GB. All 3 machines should only have 1 vCPU because the free Azure account only allows 4 vCPU's in total per region.
+**Important: Make sure both of these VM's are in the same availability Set. Under Availability Options, select 'Availability Set'. Click on 'Create New' under the Availability set. Give it an appropriate name. After creating it on the first VM, choose it for the second VM.
+
+In the Networking tab and set the following settings:
+
+Virtual network: Choose the VNet you created for the Red Team.
+
+Subnet: Choose the subnet that you created earlier.
+
+Public IP: NONE! Make sure these web VM's do not have a public IP address.
+
+NIC network security group: Choose the Advanced option so we can specify our custom security group.
+
+Configure network security group: Choose your Red Team network security group.
+
+Accelerated networking: Keep as the default setting (Off).
+
+In the Networking settings, take note of the VM URL. You may use it later.
+
+Load balancing: Keep as the default setting (No).
+
+*NOTE: Notice that these machines will not be accessible at this time because our security group is blocking all traffic. We will configure access to these machines in a later activity.
+
+The final WebVM's should resemble the following:
+
+
+
+Quick Review:
+You should now have a RSG and a VNet that holds the jump box and the 2 Web Machines protected by a firewall.
+The the public IP of the Jump Box may change when you stop and restart it. You can obtain the IP address from the VM details page.
+If the IP resets, they will see a message like this:
+
+Even though we have added an SSH key to the VMs, we currently cannot connect to them. Emphasize that this is intentional: the NSG that students implemented earlier prevents all traffic from reaching the machines.
+Therefore, the SSH key has no effect until the NSG is updated to allow inbound SSH connections.
+This approach is an important best practice:
+
+We created the network and blocked all traffic before placing any VM's inside of it.
+
+This ensures that it is truly impossible for an attacker to gain access during the configuration process.
+
+Then, we added an SSH key through secure methods, ensuring that only the user with the correct private key (you) will be able to connect to the machine.
+
+Still, this private key is essentially useless until the NSG is updated to allow SSH traffic.
+
+This further protects the machines on the network by ensuring they can't be accessed, by the private key owner or any attacker who intercepted it, until the cloud administrator explicitly allows such access.
+
+Now, you will apply secure architecture methods to their jump box configuration:
+
+
+
+
+
+
+
