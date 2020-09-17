@@ -51,48 +51,34 @@ The configuration details of each machine may be found below.
 
 # Access Policies
 The machines on the internal network are not exposed to the public Internet.
-Only the _____ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
 
-TODO: Add whitelisted IP addresses
+Only the Jump Box virtual machine can accept connections from the Internet.
 
-Machines within the network can only be accessed by _____.
+Access to this machine is only allowed from the my personal IP address.
 
-TODO: Which machine did you allow to access your ELK VM? What was its IP address?
+The whitelisted IP addresses are in the following range 10.0.0.0/24 or 2001:1234::/64
+
+Machines within the network can only be accessed by the Jump Box.
+
+TODO: Which machine did you allow to access your ELK VM? I allowed my Ansible Container access to the ELK VM. What was its IP address?
 
 A summary of the access policies in place can be found in the table below.
 
 
 
-Name
-Publicly Accessible
-Allowed IP Addresses
-
-
-
-
-Jump Box
-Yes/No
-10.0.0.1 10.0.0.2
-
-
-
-
-
-
-
-
-
-
-
+| Name | Publicly Accessible | Allowed IP Addresses |
+| --- | --- | --- |
+| Jump Box | Yes | 10.0.0.1;10.0.0.2 |
+| Red Team 1 | No |   |
+| Red Team 2 | No |   |
+| Red Team 3 | No |   |
 
 
 
 # Elk Configuration
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
+Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because of the use of Playbooks in Ansible. Playbooks are Ansible configuration files, and the language for writing them is YAML. The interesting factor, in this case, is that YAML is a better alternative for configuration management and automation.
 
-TODO: What is the main advantage of automating configuration with Ansible?
-
-The playbook implements the following tasks:
+The playbooks' implement the following tasks:
 
 TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc.
 ...
