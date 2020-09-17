@@ -4,7 +4,6 @@ UCI Project - Elk Stack Deployment.
 
 # Automated ELK Stack Deployment
 The files in this repository were used to configure the network depicted below.
-Note: The following image link needs to be updated. Replace diagram_filename.png with the name of your diagram image file.
 
 ![alt text][logo]
 
@@ -41,39 +40,12 @@ The configuration details of each machine may be found below.
 Note: Use the Markdown Table Generator to add/remove values from the table.
 
 
-
-Name
-Function
-IP Address
-Operating System
-
-
-
-
-Jump Box
-Gateway
-10.0.0.1
-Linux
-
-
-TODO
-
-
-
-
-
-TODO
-
-
-
-
-
-TODO
-
-
-
-
-
+| Name | Function | IP Address | Operating System |
+| --- | --- | --- | --- |
+| Jump Box | Gateweay | 10.0.0. | Windows |
+|Red Team 1 |   | 10.0.0.0 | Windows |
+|Red Team 2 |   | 10.0.0.0 | Windows |
+|Red Team 3 |   | 10.0.0.0 | Windows |
 
 
 Access Policies
