@@ -14,12 +14,12 @@ https://github.com/ltc-1982/Elk-Project-2020/tree/master/Ansible
 
 This document contains the following details:
 
-1.Description of the Topologu
-2.Access Policies
-3.ELK Configuration
+* Description of the Topologu 
+* Access Policies
+* ELK Configuration
  * Beats in Use
  * Machines Being Monitored
-4.How to Use the Ansible Build
+* How to Use the Ansible Build
 
 Description of the Topology
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
