@@ -2,7 +2,7 @@
 UCI Project - Elk Stack Deployment.
 
 
-Automated ELK Stack Deployment
+# Automated ELK Stack Deployment
 The files in this repository were used to configure the network depicted below.
 Note: The following image link needs to be updated. Replace diagram_filename.png with the name of your diagram image file.
 
@@ -21,7 +21,7 @@ This document contains the following details:
   - Machines Being Monitored
 * How to Use the Ansible Build
 
-Description of the Topology
+# Description of the Topology
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 Load balancing ensures that the application will be highly available, in addition to restricting traffic to the network.
 
