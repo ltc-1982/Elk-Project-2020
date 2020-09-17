@@ -37,7 +37,7 @@ Filebeat enables analysts to monitor files for suspicious changes.
 Metricbeat makes it easy to collect specific information about the machines in the network.
 
 The configuration details of each machine may be found below.
-Note: Use the Markdown Table Generator to add/remove values from the table.
+
 
 
 | Name | Function | IP Address | Operating System |
@@ -46,6 +46,7 @@ Note: Use the Markdown Table Generator to add/remove values from the table.
 |Red Team 1 |   | 10.0.0.0 | Windows |
 |Red Team 2 |   | 10.0.0.0 | Windows |
 |Red Team 3 |   | 10.0.0.0 | Windows |
+
 
 
 Access Policies
