@@ -49,7 +49,7 @@ The configuration details of each machine may be found below.
 
 
 
-Access Policies
+# Access Policies
 The machines on the internal network are not exposed to the public Internet.
 Only the _____ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
 
@@ -87,7 +87,7 @@ Yes/No
 
 
 
-Elk Configuration
+# Elk Configuration
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
 
 TODO: What is the main advantage of automating configuration with Ansible?
@@ -102,7 +102,7 @@ The following screenshot displays the result of running docker ps after successf
 Note: The following image link needs to be updated. Replace docker_ps_output.png with the name of your screenshot image file.
 
 
-Target Machines & Beats
+# Target Machines & Beats
 This ELK server is configured to monitor the following machines:
 
 TODO: List the IP addresses of the machines you are monitoring
@@ -116,7 +116,7 @@ These Beats allow us to collect the following information from each machine:
 TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., Winlogbeat collects Windows logs, which we use to track user logon events, etc.
 
 
-Using the Playbook
+# Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned:
 SSH into the control node and follow the steps below:
 
