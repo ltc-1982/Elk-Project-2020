@@ -1,5 +1,182 @@
 # Elk-Project-2020
-UCI Project - Cloud Scurity.
+UCI Project - Elk Stack Deployment.
+
+
+Automated ELK Stack Deployment
+The files in this repository were used to configure the network depicted below.
+Note: The following image link needs to be updated. Replace diagram_filename.png with the name of your diagram image file.
+
+https://uci.bootcampcontent.com/UCI-Coding-Bootcamp/uci-irv-cyber-pt-06-2020-u-c/master/Images/
+
+https://drive.google.com/file/d/1xnl4T5dnrVR7k7k5yO-ON2jVAulNYo57/view?usp=sharing
+
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the Ansible file may be used to install only certain pieces of it, such as Filebeat.
+
+TODO: Enter the playbook file.???????
+
+This document contains the following details:
+
+Description of the Topologu
+Access Policies
+ELK Configuration
+  Beats in Use
+  Machines Being Monitored
+How to Use the Ansible Build
+
+
+Description of the Topology
+The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
+Load balancing ensures that the application will be highly _____, in addition to restricting _____ to the network.
+
+TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?
+
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system _____.
+
+TODO: What does Filebeat watch for?
+TODO: What does Metricbeat record?
+
+The configuration details of each machine may be found below.
+Note: Use the Markdown Table Generator to add/remove values from the table.
+
+
+
+Name
+Function
+IP Address
+Operating System
+
+
+
+
+Jump Box
+Gateway
+10.0.0.1
+Linux
+
+
+TODO
+
+
+
+
+
+TODO
+
+
+
+
+
+TODO
+
+
+
+
+
+
+
+Access Policies
+The machines on the internal network are not exposed to the public Internet.
+Only the _____ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+
+TODO: Add whitelisted IP addresses
+
+Machines within the network can only be accessed by _____.
+
+TODO: Which machine did you allow to access your ELK VM? What was its IP address?
+
+A summary of the access policies in place can be found in the table below.
+
+
+
+Name
+Publicly Accessible
+Allowed IP Addresses
+
+
+
+
+Jump Box
+Yes/No
+10.0.0.1 10.0.0.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Elk Configuration
+Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
+
+TODO: What is the main advantage of automating configuration with Ansible?
+
+The playbook implements the following tasks:
+
+TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc.
+...
+...
+
+The following screenshot displays the result of running docker ps after successfully configuring the ELK instance.
+Note: The following image link needs to be updated. Replace docker_ps_output.png with the name of your screenshot image file.
+
+
+Target Machines & Beats
+This ELK server is configured to monitor the following machines:
+
+TODO: List the IP addresses of the machines you are monitoring
+
+We have installed the following Beats on these machines:
+
+TODO: Specify which Beats you successfully installed
+
+These Beats allow us to collect the following information from each machine:
+
+TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., Winlogbeat collects Windows logs, which we use to track user logon events, etc.
+
+
+Using the Playbook
+In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned:
+SSH into the control node and follow the steps below:
+
+Copy the _____ file to _____.
+Update the _____ file to include...
+Run the playbook, and navigate to ____ to check that the installation worked as expected.
+
+TODO: Answer the following questions to fill in the blanks:
+
+Which file is the playbook? Where do you copy it?
+Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?
+_Which URL do you navigate to in order to check that the ELK server is running?
+
+As a Bonus, provide the specific commands the user will need to run to download the playbook, update the files, etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 CREATING A RESOUCE GROUP (RSG) 
@@ -83,17 +260,17 @@ You now have a resource group and VNet that you can use to create the rest of th
 
 Final vNet Settings should be similar to:
 
-Basics:
+BASICS:
 Subscription - Example subscriotion (your subscription here)
 Resource Group - ExampleGroup (your RSG here)
 Name - ExampleNet (vNet here)
 Region -  Example West 3 (region here)
-IP addreses:
+IP ADDRESSES:
 Address space -  Example 10.0.0.0/16 (ip range here)
 Subnet - Example 10.0.0.0/24 (subnet range here)
-Tags:
+TAGS:
 None (unless you need to add)
-Security:
+SECURITY:
 BastionHost - Disabled (unless specifications are needed)
 DDoS protection plan - Basic (")
 Firewall - Disabled (")
@@ -225,7 +402,7 @@ Resource Group: Select RSG you created.
 
 Name this VM "Jump-Box."
 
-Region: Use the same region you used for your other resources.
+Region: Use the same region you used for your other resources. 
 *Note that availability of VM's in Azure could cause you to change the region where your VM's are created.
 The goal is to create 3 machines in the same resource group attached to the same security group. If you cannot add 3 machines to the resource group and security group that you have, a new resource group and security group may need to be created in another region.
 
@@ -337,7 +514,7 @@ Click on Review + create.
 Finalize all your settings and create the VM by clicking on the Create button.
 
 
-CREATE A RED-TEAM-1 and RED-TEAM-2 VM
+CREATE A RED-TEAM-1 AND RED-TEAM-2 VM
 
 Create 2 more new VMs. Keep the following in mind when configuring these VM's:
 
@@ -380,12 +557,175 @@ Load balancing: Keep as the default setting (No).
 
 *NOTE: Notice that these machines will not be accessible at this time because our security group is blocking all traffic. We will configure access to these machines in a later activity.
 
-The final WebVM's should resemble the following:
+The final WebVM's setting should resemble the following:
+
+BASIC:
+Subscription - Your Subscription
+Resource Group - Your-RSG
+Virtual Machine Name - Web-1 / Web-2
+Region - same region as you RSG and NSG
+Availability options - Availability set
+Availaability set - (new)RedTeamAS
+Authentication key - SSH public key
+Key Pair Name - youradmin
+DISK:
+OS Disk Type - Premium SSD 
+Use managed disk - Yes
+Use ephemeral OS disk - No
+NETWORKING: 
+Virtual Network - Rednet(Red Team vNet)
+Subnet - default(10.0.0.0/24)
+Public IP - none
+NIC Network Security Group - RedSG(Red Team NSG)
+Accelerated networking - Off
+Place this machine behind an existing Load Balancing solution? - No
+MANAGEMENT:
+Boot diagnostic - On
+OS guest diagnostic - Off
+Azure Security Center - None
+Diagnostis storage account - redteamdiag583(your red team storage account)
+System assigned management identity - Off
+Auto-Shutdown - Off
+ADVANCED:
+Extensions - None
+Cloud int - No
+Proximity placement group - None
+
+SECURE JUMP-BOX  
+
+The goal is to create a security group rule to allow SSH connections only from your current IP address, and to connect to your new virtual machine for management.
+
+First, find your IP address by opening the terminal and entering the command curl icanhazip.com, or googling "What's my IP address?"
+
+Next, log into portal.azure.com to create a security group rule to allow SSH connections from your current IP address.
+
+Find your security group listed under your resource group.
+
+Create a rule allowing SSH connections from your IP address.
+
+Choose Inbound security rules on the left.
+
+Click + Add to add a rule.
+
+Source: Use the IP Addresses setting, with your IP address in the field.
+
+Source port ranges: Set to Any or * here.
+
+Destination: This can be set VirtualNetwork but a better setting is to specify the internal IP of your jump box to really limit this traffic.
+
+Destination port ranges: Since we only want to allow SSH, designate port 22.
+
+Protocol: Set to Any or TCP.
+
+Action: Set to Allow traffic.
+
+Priority: This must be a lower number than your rule to deny all traffic, i.e., less than 4,096.
+
+Name: Name this rule anything you like, but it should describe the rule. For example: SSH.
+
+Description: Write a short description similar to: "Allow SSH from my IP."
+
+Next, use your command line to SSH to the VM for administration. Windows users should use GitBash.
+
+The command to connect is ssh admin-username@VM-public-IP.
+
+Use the username you previously set up. (Your SSH key should be used automatically.)
+
+Once you are connected, check your sudo permissions.
+
+Run the command sudo -l.
+
+Notice that your admin user has full sudo permissions without requiring a password.
+
+Please note that your public IP address will change depending on your location.
+
+In a normal work environment, you would set up a static IP address to avoid continually creating rules to allow access to your cloud machine.
+
+In our case, you will need to create another security rule allowing your home network to access your Azure VM.
+
+*NOTE: If you need to reset your SSH key, you can do so in the VM details page by selecting 'Reset Password' on the left had column.
+
+
+CREATING AND ATTACHING DOCKER CONTAINERS:
+
+The goal is to configure your jump box to run Docker containers and to install a container.
+
+Start by installing docker.io on your Jump box.
+
+Run sudo apt update then sudo apt upgrade followed by sudo apt install docker.io
+
+Verify that the Docker service is running.
+
+Run sudo systemctl status docker
+*Note: If the Docker service is not running, start it with sudo systemctl start docker.
+
+Run the following commands to create an image 
+
+
+Once Docker is installed, pull the container cyberxsecurity/ansible.
+
+
+Run sudo docker pull cyberxsecurity/ansible.
+
+
+You can also switch to the root user so you don't have to keep typing sudo.
+
+
+Run sudo su.
+
+
+
+
+Launch the Ansible container and connect to it using the appropriate Docker commands.
+
+
+Run docker run -ti cyberxsecurity/ansible:latest bash to start the container.
+
+
+Run exit to quit.
+
+
+
+
+Create a new security group rule that allows your jump box machine full access to your VNet.
+
+
+Get the private IP address of your jump box.
+
+
+Go to your security group settings and create an inbound rule. Create rules allowing SSH connections from your IP address.
+
+
+Source: Use the IP Addresses setting with your jump box's internal IP address in the field.
+
+
+Source port ranges: Any or * can be listed here.
+
+
+Destination: Set to VirtualNetwork.
+
+
+Destination port ranges: Only allow SSH. So, only port 22.
+
+
+Protocol: Set to Any or TCP.
+
+
+Action: Set to Allow traffic from your jump box.
+
+
+Priority: Priority must be a lower number than your rule to deny all traffic.
+
+
+Name: Name this rule anything you like, but it should describe the rule. For example: SSH from Jump Box.
+
+
+Description: Write a short description similar to: "Allow SSH from the jump box IP."
 
 
 
 Quick Review:
-You should now have a RSG and a VNet that holds the jump box and the 2 Web Machines protected by a firewall.
+You should now have a RSG and a VNet that holds the Jump-Box VM and the 2 Red-Team VM protected by a firewall.
 The the public IP of the Jump Box may change when you stop and restart it. You can obtain the IP address from the VM details page.
 If the IP resets, they will see a message like this:
 
@@ -402,11 +742,6 @@ Then, we added an SSH key through secure methods, ensuring that only the user wi
 Still, this private key is essentially useless until the NSG is updated to allow SSH traffic.
 
 This further protects the machines on the network by ensuring they can't be accessed, by the private key owner or any attacker who intercepted it, until the cloud administrator explicitly allows such access.
-
-Now, you will apply secure architecture methods to their jump box configuration:
-
-
-
 
 
 
