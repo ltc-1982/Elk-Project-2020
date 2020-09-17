@@ -6,8 +6,6 @@ Automated ELK Stack Deployment
 The files in this repository were used to configure the network depicted below.
 Note: The following image link needs to be updated. Replace diagram_filename.png with the name of your diagram image file.
 
-https://uci.bootcampcontent.com/UCI-Coding-Bootcamp/uci-irv-cyber-pt-06-2020-u-c/master/Images/
-
 https://drive.google.com/file/d/1xnl4T5dnrVR7k7k5yO-ON2jVAulNYo57/view?usp=sharing
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the Ansible folder may be used to install only certain pieces of it, such as Filebeat.
@@ -16,24 +14,26 @@ https://github.com/ltc-1982/Elk-Project-2020/tree/master/Ansible
 
 This document contains the following details:
 
-Description of the Topologu
-Access Policies
-ELK Configuration
-  Beats in Use
-  Machines Being Monitored
-How to Use the Ansible Build
-
+1.Description of the Topologu
+2.Access Policies
+3.ELK Configuration
+ * Beats in Use
+ * Machines Being Monitored
+4.How to Use the Ansible Build
 
 Description of the Topology
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
-Load balancing ensures that the application will be highly _____, in addition to restricting _____ to the network.
+Load balancing ensures that the application will be highly available, in addition to restricting traffic to the network.
 
-TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?
+Load balancing is a methodical and efficient distributor of network or application traffic across multiple servers in a shared network. The load balancer sits between client devices and backend servers, receiving and then distributing incoming requests to any available server capable of fulfilling particular request. 
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system _____.
+An advantage of using a jump box, is the fact that it prevents all your networs VM's exposer to the public. We can do monitoring and logging on a single box. 
 
-TODO: What does Filebeat watch for?
-TODO: What does Metricbeat record?
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the application and system infustructure.
+
+Filebeat enables analysts to monitor files for suspicious changes.
+
+Metricbeat makes it easy to collect specific information about the machines in the network.
 
 The configuration details of each machine may be found below.
 Note: Use the Markdown Table Generator to add/remove values from the table.
