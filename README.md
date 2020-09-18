@@ -5,7 +5,7 @@ UCI Project - Elk Stack Deployment.
 # Automated ELK Stack Deployment
 The files in this repository were used to configure the network depicted below.
 
-https://uci.bootcampcontent.com/UCI-Coding-Bootcamp/uci-irv-cyber-pt-06-2020-u-c/master/Images/diagram_filename.png
+https://uci.bootcampcontent.com/UCI-Coding-Bootcamp/uci-irv-cyber-pt-06-2020-u-c/master/Images/Elk_Security_Network.png
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the Ansible folder may be used to install only certain pieces of it, such as Filebeat.
 
