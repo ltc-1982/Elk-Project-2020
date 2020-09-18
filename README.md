@@ -5,7 +5,7 @@ UCI Project - Elk Stack Deployment.
 # Automated ELK Stack Deployment
 The files in this repository were used to configure the network depicted below.
 
-[!alert](https://uci.bootcampcontent.com/UCI-Coding-Bootcamp/uci-irv-cyber-pt-06-2020-u-c/master/Images/Elk_Stack_Network.png)
+[!alert]
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the Ansible folder may be used to install only certain pieces of it, such as Filebeat.
 
@@ -40,10 +40,10 @@ The configuration details of each machine may be found below.
 
 | Name | Function | IP Address | Operating System |
 | --- | --- | --- | --- |
-| Jump Box | Gateweay | 10.0.0. | Linux |
-|Red Team VM 1 | Webserver  | 10.0.0.0 | Linux |
-|Red Team VM 2 | Webserver  | 10.0.0.0 | Linux |
-|Elk Stack VM | Monitoring  | 10.0.0.0 | Linux |
+| Jump Box | Gateweay | 10.10.0.7 | Linux |
+|Red Team VM 1 | Webserver  | 10.10.0.9 | Linux |
+|Red Team VM 2 | Webserver  | 10.10.0.10 | Linux |
+|Elk Stack VM | Monitoring  | 10.1.0.4 | Linux |
 
 
 In addition to the above, Azure has provisioned a load balancer in front of all machines except for the jump box. The load balancer's targets are organized into the following availability zones:
@@ -51,18 +51,20 @@ In addition to the above, Azure has provisioned a load balancer in front of all 
   -Availability Zone 1: DVWA 1 + DVWA 2
   -Availability Zone 2: ELK
 
+# Elk Server Configuration
+
+The ELK VM exposes an Elastic Stack instance. Docker is used to download and manage an ELK container.
+
+Rather than configure ELK manually, we opted to develop a reusable Ansible Playbook to accomplish the task. This playbook is duplicated below.
+
+To use this playbook, one must log into the Jump Box, then issue: ansible-playbook install_elk.yml elk. This runs the install_elk.yml playbook on the elk host.
+ 
 # Access Policies
 The machines on the internal network are not exposed to the public Internet.
 
-Only the Jump Box virtual machine can accept connections from the Internet.
+Only the jump box machine can accept connections from the Internet. Access to this machine is only allowed from the IP address 192.168.56.1
 
-Access to this machine is only allowed from the my personal IP address.
-
-The whitelisted IP addresses are in the following range 10.0.0.0/24 or 2001:1234::/64
-
-Machines within the network can only be accessed by the Jump Box.
-
-TODO: Which machine did you allow to access your ELK VM? I allowed my Ansible Container access to the ELK VM. What was its IP address?
+Machines within the network can only be accessed by each other. The DVWA 1 and DVWA 2 VMs send traffic to the ELK server.
 
 A summary of the access policies in place can be found in the table below.
 
@@ -70,21 +72,79 @@ A summary of the access policies in place can be found in the table below.
 
 | Name | Publicly Accessible | Allowed IP Addresses |
 | --- | --- | --- |
-| Jump Box | Yes | 10.0.0.1;10.0.0.2 |
-| Red Team 1 | No |   |
-| Red Team 2 | No |   |
-| Red Team 3 | No |   |
+| Jump Box | Yes | 192.168.56.1 |
+| Elk | No | 10.0.0.1-254 |
+| DVWA 1 | No | 10.0.0.1-254 |
+| DVWA 2 | No | 10.0.0.1-254 |
 
 
 
 # Elk Configuration
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because of the use of Playbooks in Ansible. Playbooks are Ansible configuration files, and the language for writing them is YAML. The interesting factor, in this case, is that YAML is a better alternative for configuration management and automation.
+Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
 
-The playbooks' implement the following tasks:
+TODO: What is the main advantage of automating configuration with Ansible?
+
+The playbook implements the following tasks:
 
 TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc.
 ...
 ...
+
+The following screenshot displays the result of running docker ps after successfully configuring the ELK instance.
+
+The playbook is duplicated below.
+
+---
+# install_elk.yml
+- name: Configure Elk VM with Docker
+  hosts: elkservers
+  remote_user: elk
+  become: true
+  tasks:
+    # Use apt module
+    - name: Install docker.io
+      apt:
+        update_cache: yes
+        name: docker.io
+        state: present
+
+      # Use apt module
+    - name: Install pip3
+      apt:
+        force_apt_get: yes
+        name: python3-pip
+        state: present
+
+      # Use pip module
+    - name: Install Docker python module
+      pip:
+        name: docker
+        state: present
+
+      # Use command module
+    - name: Increase virtual memory
+      command: sysctl -w vm.max_map_count=262144
+
+      # Use sysctl module
+    - name: Use more memory
+      sysctl:
+        name: vm.max_map_count
+        value: "262144"
+        state: present
+        reload: yes
+
+      # Use docker_container module
+    - name: download and launch a docker elk container
+      docker_container:
+        name: elk
+        image: sebp/elk:761
+        state: started
+        restart_policy: always
+        published_ports:
+          - 5601:5601
+          - 9200:9200
+          - 5044:5044
+
 
 The following screenshot displays the result of running docker ps after successfully configuring the ELK instance.
 Note: The following image link needs to be updated. Replace docker_ps_output.png with the name of your screenshot image file.
