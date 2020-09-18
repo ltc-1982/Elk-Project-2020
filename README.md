@@ -46,6 +46,10 @@ The configuration details of each machine may be found below.
 |Elk Stack VM | Monitoring  | 10.0.0.0 | Linux |
 
 
+In addition to the above, Azure has provisioned a load balancer in front of all machines except for the jump box. The load balancer's targets are organized into the following availability zones:
+
+  -Availability Zone 1: DVWA 1 + DVWA 2
+  -Availability Zone 2: ELK
 
 # Access Policies
 The machines on the internal network are not exposed to the public Internet.
