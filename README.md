@@ -40,10 +40,10 @@ The configuration details of each machine may be found below.
 
 | Name | Function | IP Address | Operating System |
 | --- | --- | --- | --- |
-| Jump Box | Gateweay | 10.0.0. | Windows |
-|Red Team 1 |   | 10.0.0.0 | Windows |
-|Red Team 2 |   | 10.0.0.0 | Windows |
-|Red Team 3 |   | 10.0.0.0 | Windows |
+| Jump Box | Gateweay | 10.0.0. | Linux |
+|Red Team VM 1 | Webserver  | 10.0.0.0 | Linux |
+|Red Team VM 2 | Webserver  | 10.0.0.0 | Linux |
+|Elk Stack VM | Monitoring  | 10.0.0.0 | Linux |
 
 
 
