@@ -1,9 +1,9 @@
-#Cloud Security
+# Cloud Network
+This is a collection of Linux Scripts and Ansible Scripts from my CyberClass.
 
+Most of the scripts are used to configure cloud servers with differnt docker containers.
 
-## Elk-Project-2020
-UCI Project - Elk Stack Deployment.
-
+The final setup was 4 servers running vulnerable DVWA containers along with a jump box and a server running an ELK stack container.
 
 # Automated ELK Stack Deployment
 The files in this repository were used to configure the network depicted below.
@@ -220,7 +220,7 @@ The following screenshot displays the result of running docker ps after successf
 ```python
 sysadmin@elk:~$ sudo docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                                                              NAMES
-842caa422ed8        sebp/elk            "/usr/local/bin/star…"   3 hours ago         Up 3 hours          0.0.0.0:5044->5044/tcp, 0.0.0.0:5601->5601/tcp, 0.0.0.0:9200->9200/tcp, 9300/tcp   elk
+842caa422ed8        sebp/elk            "/usr/local/bin/star…"   1 hour ago         Up 1 hour          0.0.0.0:5044->5044/tcp, 0.0.0.0:5601->5601/tcp, 0.0.0.0:9200->9200/tcp, 9300/tcp   elk
 sysadmin@elk:~$
 ```
 
@@ -287,4 +287,3 @@ To verify success, wait five minutes to give ELK time to start up.
 
 Then, run: curl http://10.1.0.4:5601. This is the address of Kibana. If the installation succeeded, this command should print HTML to the console.
 
-As a Bonus, provide the specific commands the user will need to run to download the playbook, update the files, etc.
