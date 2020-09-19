@@ -39,15 +39,19 @@ The configuration details of each machine may be found below.
 | Name | Function | IP Address | Operating System |
 | --- | --- | --- | --- |
 | Jump Box | Gateweay | 10.10.0.7 | Linux |
-|Red Team VM 1 | Webserver  | 10.10.0.9 | Linux |
-|Red Team VM 2 | Webserver  | 10.10.0.10 | Linux |
-|Elk Stack VM | Monitoring  | 10.1.0.4 | Linux |
+| Red Team VM 1 | Webserver | 10.10.0.9 | Linux |
+| Red Team VM 2 | Webserver | 10.10.0.10 | Linux |
+| Red Team VM 3 | Webserver | 10.10.0.11 | Linux |
+| Red Team VM 4 | Webserver | 10.10.0.12 | Linux |
+| Elk Stack VM | Monitoring | 10.1.0.4 | Linux |
 
 
 In addition to the above, Azure has provisioned a load balancer in front of all machines except for the jump box. The load balancer's targets are organized into the following availability zones:
 
   -Availability Zone 1: DVWA 1 + DVWA 2
-  -Availability Zone 2: ELK
+  -Availability Zone 2: DVWA 3
+  -Availability Zone 3: DVWA 4
+  -Availability Zine 4: Elk
 
 # Elk Server Configuration
 
@@ -74,7 +78,8 @@ A summary of the access policies in place can be found in the table below.
 | Elk | No | 10.0.0.1-254 |
 | DVWA 1 | No | 10.0.0.1-254 |
 | DVWA 2 | No | 10.0.0.1-254 |
-
+| DVWA 3 | No | 10.0.0.1-254 |
+| DVWA 4 | No | 10.0.0.1-254 |
 
 
 # Elk Configuration
@@ -151,7 +156,7 @@ Note: The following image link needs to be updated. Replace docker_ps_output.png
 
 
 # Target Machines & Beats
-This ELK server is configured to monitor the DVWA 1 and DVWA 2 VMs, at 10.10.0.9 and 10.10.0.10.
+This ELK server is configured to monitor the DVWA 1, DVWA 2, DVWA 3, and DVWA 4 VMs, at 10.10.0.9, 10.10.0.10, 10.10.0.11, and 10.10.0.12.
 
 We have installed the following Beats on these machines:
 
