@@ -5,7 +5,7 @@ Most of the scripts are used to configure cloud servers with differnt docker con
 
 The final setup was 4 servers running vulnerable DVWA containers along with a jump box and a server running an ELK stack container.
 
-# Automated ELK Stack Deployment
+## Automated ELK Stack Deployment
 The files in this repository were used to configure the network depicted below.
 
 ![alt text](https://github.com/ltc-1982/Elk-Project-2020/blob/master/Diagrams/Elk%20Stack%20Network.png)
@@ -21,7 +21,7 @@ This document contains the following details:
   - Machines Being Monitored
 * How to Use the Ansible Build
 
-# Description of the Topology
+## Description of the Topology
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 Load balancing ensures that the application will be highly available, in addition to restricting traffic to the network.
 
@@ -56,7 +56,7 @@ In addition to the above, Azure has provisioned a load balancer in front of all 
   - Availability Zone 3: DVWA 4
   - Availability Zone 4: Elk
 
-# Elk Server Configuration
+## Elk Server Configuration
 
 The ELK VM exposes an Elastic Stack instance. Docker is used to download and manage an ELK container.
 
@@ -64,7 +64,7 @@ Rather than configure ELK manually, we opted to develop a reusable Ansible Playb
 
 To use this playbook, one must log into the Jump Box, then issue: ansible-playbook install_elk.yml elk. This runs the install_elk.yml playbook on the elk host.
  
-# Access Policies
+## Access Policies
 The machines on the internal network are not exposed to the public Internet.
 
 Only the jump box machine can accept connections from the Internet. Access to this machine is only allowed from the IP address 192.168.56.1
@@ -85,7 +85,7 @@ A summary of the access policies in place can be found in the table below.
 | DVWA 4 | No | 10.0.0.1-254 |
 
 
-# Elk Configuration
+## Elk Configuration
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
 
 TODO: What is the main advantage of automating configuration with Ansible?
@@ -224,7 +224,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 sysadmin@elk:~$
 ```
 
-# Target Machines & Beats
+## Target Machines & Beats
 This ELK server is configured to monitor the DVWA 1, DVWA 2, DVWA 3, and DVWA 4 VMs, at 10.10.0.9, 10.10.0.10, 10.10.0.11, and 10.10.0.12.
 
 We have installed the following Beats on these machines:
@@ -241,7 +241,7 @@ Metricbeat: Metricbeat detects changes in system metrics, such as CPU usage. We 
 
 Packetbeat: Packetbeat collects packets that pass through the NIC, similar to Wireshark. We use it to generate a trace of all activity that takes place on the network, in case later forensic analysis should be warranted.
 
-# Using the Playbook
+## Using the Playbook
 In order to use the playbooks, you will need to have an Ansible control node already configured. We use the jump box for this purpose.
 
 To use the playbooks, we must perform the following steps:
