@@ -5,6 +5,7 @@ Most of the scripts are used to configure cloud servers with differnt docker con
 
 The final setup was 4 servers running vulnerable DVWA containers along with a jump box and a server running an ELK stack container.
 
+
 ## Automated ELK Stack Deployment
 The files in this repository were used to configure the network depicted below.
 
@@ -36,7 +37,6 @@ Filebeat enables analysts to monitor files for suspicious changes.
 Metricbeat makes it easy to collect specific information about the machines in the network.
 
 The configuration details of each machine may be found below.
-
 
 
 | Name | Function | IP Address | Operating System |
