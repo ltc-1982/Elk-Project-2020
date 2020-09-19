@@ -92,7 +92,7 @@ The following screenshot displays the result of running docker ps after successf
 
 The playbook is duplicated below.
 
-''' python
+``` python
 ###
 ---
 # install_elk.yml
@@ -144,7 +144,7 @@ The playbook is duplicated below.
           - 5601:5601
           - 9200:9200
           - 5044:5044
-'''
+``` 
 
 The following screenshot displays the result of running docker ps after successfully configuring the ELK instance.
 Note: The following image link needs to be updated. Replace docker_ps_output.png with the name of your screenshot image file.
@@ -177,6 +177,7 @@ To use the playbooks, we must perform the following steps:
 
 The easiest way to copy the playbooks is to use Git:
 
+```python
 $ cd /etc/ansible
 $ mkdir files
 #Clone Repository + IaC Files
@@ -184,11 +185,12 @@ $ git clone https://github.com/yourusername/project-1.git
 #Move Playbooks and hosts file Into `/etc/ansible`
 $ cp project-1/playbooks/* .
 $ cp project-1/files/* ./files
-
+```
 This copies the playbook files to the correct place.
 
 Next, you must create a hosts file to specify which VMs to run each playbook on. Run the commands below:
 
+```python
 $ cd /etc/ansible
 $ cat > hosts <<EOF
 [webservers]
@@ -198,17 +200,19 @@ $ cat > hosts <<EOF
 [elk]
 10.1.0.4
 EOF
-
+```
 After this, the commands below run the playbook:
 
+```python
 $ cd /etc/ansible
 $ ansible-playbook install_elk.yml elk
 $ ansible-playbook install_filebeat.yml webservers
 $ ansible-playbook install_metricbeat.yml webservers
-
+```
 To verify success, wait five minutes to give ELK time to start up.
 
 Then, run: curl http://10.1.0.4:5601. This is the address of Kibana. If the installation succeeded, this command should print HTML to the console.
+
 
 As a Bonus, provide the specific commands the user will need to run to download the playbook, update the files, etc.
 
