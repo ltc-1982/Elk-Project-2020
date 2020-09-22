@@ -91,22 +91,22 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 The playbook implements the following tasks:
 
 The header of the Ansible playbook can specify a different group of machines as well as a different remote user (in case you did not use the same admin name):
-
+```
 - name: Config elk VM with Docker
   hosts: elkservers
   remote_user: elk
   become: true
   tasks:
-
+```
 Before you can run the elk container, we need to increase the memory:
-
+```
 - name: Use more memory
   sysctl:
     name: vm.max_map_count
     value: '262144'
     state: present
     reload: yes
-
+```
 This is a system requirement for the ELK container.
 
 The playbook should then install the following services:
