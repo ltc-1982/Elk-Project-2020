@@ -46,7 +46,7 @@ The configuration details of each machine may be found below.
 | Red Team VM 2 | Webserver | 10.10.0.10 | Linux |![Red-Team-2 setup](https://github.com/ltc-1982/Elk-Project-2020/blob/36e6da7f6e8fccc3ca0e9979208379fd5f285197/Guide.txt#L278)
 | Red Team VM 3 | Webserver | 10.10.0.11 | Linux |![Red-Team-3 setup](https://github.com/ltc-1982/Elk-Project-2020/blob/36e6da7f6e8fccc3ca0e9979208379fd5f285197/Guide.txt#L278)
 | Red Team VM 4 | Webserver | 10.10.0.12 | Linux |![Red-Team-4 setup](https://github.com/ltc-1982/Elk-Project-2020/blob/36e6da7f6e8fccc3ca0e9979208379fd5f285197/Guide.txt#L278)
-| Elk Stack VM | Monitoring | 10.1.0.4 | Linux |
+| Elk Stack VM | Monitoring | 10.1.0.4 | Linux |![Elk-Conf](https://github.com/ltc-1982/Elk-Project-2020/blob/master/README.md#elk-server-configuration)
 
 
 In addition to the above, Azure has provisioned a load balancer in front of all machines except for the jump box. The load balancer's targets are organized into the following availability zones:
