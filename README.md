@@ -69,7 +69,7 @@ The machines on the internal network are not exposed to the public Internet.
 
 Only the jump box machine can accept connections from the Internet. Access to this machine is only allowed from the IP address 192.168.56.1
 
-Machines within the network can only be accessed by each other. The DVWA 1 and DVWA 2 VMs send traffic to the ELK server.
+Machines within the network can only be accessed by each other. The DVWA 1, DVWA 2, DVWA 3, and DVWA 4 VMs send traffic to the ELK server.
 
 A summary of the access policies in place can be found in the table below.
 
