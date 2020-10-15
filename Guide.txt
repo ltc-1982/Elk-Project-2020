@@ -452,7 +452,7 @@ Name: Name this rule anything you like, but it should describe the rule. For exa
 
 Description: Write a short description similar to: "Allow SSH from the jump box IP."
 
-Quick Review: You should now have a RSG and a VNet that holds the Jump-Box VM and the 2 Red-Team VM protected by a firewall. The the public IP of the Jump Box may change when you stop and restart it. You can obtain the IP address from the VM details page. If the IP resets, they will see a message like this:
+Quick Review: You should now have a RSG and a VNet that holds the Jump-Box VM and the 4 Red-Team VM protected by a firewall. The the public IP of the Jump Box may change when you stop and restart it. You can obtain the IP address from the VM details page. If the IP resets, they will see a message like this:
 
 Even though we have added an SSH key to the VMs, we currently cannot connect to them. Emphasize that this is intentional: the NSG that students implemented earlier prevents all traffic from reaching the machines. Therefore, the SSH key has no effect until the NSG is updated to allow inbound SSH connections. This approach is an important best practice:
 
