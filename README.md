@@ -54,7 +54,7 @@ In addition to the above, Azure has provisioned a load balancer in front of all 
   - Availability Zone 1: DVWA 1 + DVWA 2
   - Availability Zone 2: DVWA 3
   - Availability Zone 3: DVWA 4
-  - Availability Zone 4: Elk
+  - Availability Zone 2: Elk
 
 ## Elk Server Configuration
 
