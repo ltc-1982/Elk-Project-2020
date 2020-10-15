@@ -41,7 +41,7 @@ The configuration details of each machine may be found below.
 
 | Name | Function | IP Address | Operating System | Guide.txt link |
 | --- | --- | --- | --- | --- |
-| Jump Box | Gateweay | 10.10.0.7 | Linux |![guide txt](https://github.com/ltc-1982/Elk-Project-2020/blob/8e05e00e94dea40909d867311e164f071eb7c05c/Guide.txt#L194)
+| Jump Box | Gateweay | 10.10.0.7 | Linux |![jump-box setup](https://github.com/ltc-1982/Elk-Project-2020/blob/8e05e00e94dea40909d867311e164f071eb7c05c/Guide.txt#L194)
 | Red Team VM 1 | Webserver | 10.10.0.9 | Linux |
 | Red Team VM 2 | Webserver | 10.10.0.10 | Linux |
 | Red Team VM 3 | Webserver | 10.10.0.11 | Linux |
